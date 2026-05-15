@@ -180,7 +180,7 @@ public class CustomItem
                 EnchantedStats = mods.EnchantedStats;
                 UniqueName = mods.UniqueName?.Replace('\x2019', '\x27');
                 IsMirrored = mods.IsMirrored;
-                if (!IsIdentified && Rarity == ItemRarity.Unique)
+                if (Rarity == ItemRarity.Unique && (!IsIdentified || string.IsNullOrEmpty(UniqueName)))
                 {
                     var artPath = itemEntity.GetComponent<RenderItem>()?.ResourcePath;
                     if (artPath != null)
