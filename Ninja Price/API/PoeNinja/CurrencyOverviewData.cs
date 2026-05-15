@@ -19,8 +19,9 @@ public class CurrencyOverviewData
             {
                 if (_linesByName == null)
                 {
-                    var primaryChaosRate = core.primary switch { "divine" => core.rates.chaos.Value, "chaos" => 1 };
-                    _linesByName = items.Join(lines, i => i.id, l => l.id, (i, l) => (i, l))
+                    var primaryChaosRate = core.primary switch { "divine" => core.rates.chaos.Value, "chaos" => 1, _ => 1 };
+                    var effectiveItems = items ?? core?.items ?? [];
+                    _linesByName = effectiveItems.Join(lines, i => i.id, l => l.id, (i, l) => (i, l))
                         .ToDictionary(p => p.i.name, p => (p.l, p.i, (p.l.primaryValue ?? 0) * primaryChaosRate));
                 }
 
