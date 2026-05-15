@@ -190,7 +190,7 @@ public partial class Main
                         if (currencySearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * currencySearch.ChaosEquivalent / pricedStack;
-                            SetPriceChangeData(item.PriceData, currencySearch.Line.sparkline.totalChange, currencySearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, currencySearch.Line.sparkline?.totalChange, currencySearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = currencySearch.Item.detailsId;
                         }
 
@@ -201,7 +201,7 @@ public partial class Main
                         if (djinnSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * djinnSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, djinnSearch.Line.sparkline.totalChange, djinnSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, djinnSearch.Line.sparkline?.totalChange, djinnSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = djinnSearch.Item.detailsId;
                         }
                         break;
@@ -211,7 +211,7 @@ public partial class Main
                         if (astrolabeSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * astrolabeSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, astrolabeSearch.Line.sparkline.totalChange, astrolabeSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, astrolabeSearch.Line.sparkline?.totalChange, astrolabeSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = astrolabeSearch.Item.detailsId;
                         }
 
@@ -221,7 +221,7 @@ public partial class Main
                         if (catalystSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * catalystSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, catalystSearch.Line.sparkline.totalChange, catalystSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, catalystSearch.Line.sparkline?.totalChange, catalystSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = catalystSearch.Item.detailsId;
                         }
 
@@ -231,7 +231,7 @@ public partial class Main
                         if (divinationSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * divinationSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, divinationSearch.Line.sparkline.totalChange, divinationSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, divinationSearch.Line.sparkline?.totalChange, divinationSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = divinationSearch.Item.detailsId;
                         }
 
@@ -241,7 +241,7 @@ public partial class Main
                         if (essenceSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * essenceSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, essenceSearch.Line.sparkline.totalChange, essenceSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, essenceSearch.Line.sparkline?.totalChange, essenceSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = essenceSearch.Item.detailsId;
                         }
 
@@ -251,7 +251,7 @@ public partial class Main
                         if (oilSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * oilSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, oilSearch.Line.sparkline.totalChange, oilSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, oilSearch.Line.sparkline?.totalChange, oilSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = oilSearch.Item.detailsId;
                         }
                         break;
@@ -260,7 +260,7 @@ public partial class Main
                         if (tattooSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * tattooSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, tattooSearch.Line.sparkline.totalChange, tattooSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, tattooSearch.Line.sparkline?.totalChange, tattooSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = tattooSearch.Item.detailsId;
                         }
                         break;
@@ -269,7 +269,7 @@ public partial class Main
                         if (omenSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * omenSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, omenSearch.Line.sparkline.totalChange, omenSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, omenSearch.Line.sparkline?.totalChange, omenSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = omenSearch.Item.detailsId;
                         }
                         break;
@@ -278,7 +278,7 @@ public partial class Main
                         if (artifactSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * artifactSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, artifactSearch.Line.sparkline.totalChange, artifactSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, artifactSearch.Line.sparkline?.totalChange, artifactSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = artifactSearch.Item.detailsId;
                         }
 
@@ -292,7 +292,7 @@ public partial class Main
                         if (fragmentSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * fragmentSearch.ChaosEquivalent / pricedStack;
-                            SetPriceChangeData(item.PriceData, fragmentSearch.Line.sparkline.totalChange, fragmentSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, fragmentSearch.Line.sparkline?.totalChange, fragmentSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = fragmentSearch.Item.detailsId;
                         }
 
@@ -403,7 +403,7 @@ public partial class Main
                         if (deliriumOrbsSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * deliriumOrbsSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, deliriumOrbsSearch.Line.sparkline.totalChange, deliriumOrbsSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, deliriumOrbsSearch.Line.sparkline?.totalChange, deliriumOrbsSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = deliriumOrbsSearch.Item.detailsId;
                         }
 
@@ -433,7 +433,7 @@ public partial class Main
                         if (scarabSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * scarabSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, scarabSearch.Line.sparkline.totalChange, scarabSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, scarabSearch.Line.sparkline?.totalChange, scarabSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = scarabSearch.Item.detailsId;
                         }
 
@@ -615,7 +615,7 @@ public partial class Main
                         if (resonatorSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * resonatorSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, resonatorSearch.Line.sparkline.totalChange, resonatorSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, resonatorSearch.Line.sparkline?.totalChange, resonatorSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = resonatorSearch.Item.detailsId;
                         }
 
@@ -625,7 +625,7 @@ public partial class Main
                         if (fossilSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * fossilSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, fossilSearch.Line.sparkline.totalChange, fossilSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, fossilSearch.Line.sparkline?.totalChange, fossilSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = fossilSearch.Item.detailsId;
                         }
 
@@ -757,7 +757,7 @@ public partial class Main
                         if (beastSearch != null)
                         {
                             item.PriceData.MinChaosValue = beastSearch.chaosValue ?? 0;
-                            SetPriceChangeData(item.PriceData, beastSearch.sparkline.totalChange, beastSearch.sparkline.data);
+                            SetPriceChangeData(item.PriceData, beastSearch.sparkline?.totalChange, beastSearch.sparkline?.data);
                             item.PriceData.DetailsId = beastSearch.detailsId;
                         }
 
@@ -767,7 +767,7 @@ public partial class Main
                         if (runeSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * runeSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, runeSearch.Line.sparkline.totalChange, runeSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, runeSearch.Line.sparkline?.totalChange, runeSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = runeSearch.Item.detailsId;
                         }
 
@@ -777,7 +777,7 @@ public partial class Main
                         if (allflameSearch != default)
                         {
                             item.PriceData.MinChaosValue = item.CurrencyInfo.StackSize * allflameSearch.ChaosEquivalent;
-                            SetPriceChangeData(item.PriceData, allflameSearch.Line.sparkline.totalChange, allflameSearch.Line.sparkline.data);
+                            SetPriceChangeData(item.PriceData, allflameSearch.Line.sparkline?.totalChange, allflameSearch.Line.sparkline?.data);
                             item.PriceData.DetailsId = allflameSearch.Item.detailsId;
                         }
 
@@ -791,7 +791,7 @@ public partial class Main
                                 {
                                     var line = CollectedData.Currency.LinesByName.GetValueOrDefault("Mirror of Kalandra") switch { (null, null, 0) => (null, null, 100000), var o => o };
                                     item.PriceData.MinChaosValue = line.ChaosEquivalent;
-                                    SetPriceChangeData(item.PriceData, line.Line?.sparkline.totalChange, line.Line?.sparkline.data);
+                                    SetPriceChangeData(item.PriceData, line.Line?.sparkline?.totalChange, line.Line?.sparkline?.data);
                                     item.PriceData.DetailsId = "ultimatum-inscribed-mirror";
                                     break;
                                 }
