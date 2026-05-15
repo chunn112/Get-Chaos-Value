@@ -62,21 +62,35 @@ public partial class Main
             .Where(x => x.Type == GroundItemProcessingType.WorldItem)
             .DistinctBy(x => (x.Item.Element?.Address, x.Item.Entity?.Address))
             .ToDictionary(x => (x.Item.Element?.Address, x.Item.Entity?.Address));
-        var labelsOnGround = GameController.IngameState.IngameUi.ItemsOnGroundLabelElement.VisibleGroundItemLabels;
+        var labelsOnGround = GameController.IngameState.IngameUi.ItemsOnGroundLabelsVisible;
         var result = new List<ItemOnGround>();
+        if (Settings.DebugSettings.EnableDebugLogging)
+            LogMessage($"[NP] GetItemsOnGround: {labelsOnGround?.Count() ?? 0} labels", 1, Color.Aqua);
         foreach (var description in labelsOnGround)
         {
-            if (description.Entity.TryGetComponent<WorldItem>(out var worldItem) &&
-                worldItem.ItemEntity is { IsValid: true } groundItemEntity)
+            try
             {
-                var customItem = prevDict.GetValueOrDefault((description.Label?.Address, groundItemEntity.Address))?.Item;
-                if (customItem == null)
+                var groundEntity = description.ItemOnGround;
+                if (groundEntity != null &&
+                    groundEntity.TryGetComponent<WorldItem>(out var worldItem) &&
+                    worldItem.ItemEntity is { IsValid: true } groundItemEntity)
                 {
-                    customItem = new CustomItem(groundItemEntity, description.Label);
-                    GetValue(customItem);
-                }
+                    var customItem = prevDict.GetValueOrDefault((description.Label?.Address, groundItemEntity.Address))?.Item;
+                    if (customItem == null)
+                    {
+                        customItem = new CustomItem(groundItemEntity, description.Label);
+                        GetValue(customItem);
+                    }
 
-                result.Add(new ItemOnGround(customItem, GroundItemProcessingType.WorldItem, description.ClientRect));
+                    if (Settings.DebugSettings.EnableDebugLogging)
+                        LogMessage($"[NP] Item: {customItem.BaseName} type={customItem.ItemType} price={customItem.PriceData.MinChaosValue:F1}c", 1, Color.Aqua);
+                    result.Add(new ItemOnGround(customItem, GroundItemProcessingType.WorldItem, description.Label?.GetClientRect()));
+                }
+            }
+            catch (Exception ex)
+            {
+                if (Settings.DebugSettings.EnableDebugLogging)
+                    LogError($"[NP] Ground item error: {ex.Message}");
             }
         }
         result.AddRange(_slowGroundItems.Value);
@@ -428,23 +442,26 @@ public partial class Main
                         : $"\nIdentified as one of:\n{string.Join('\n', HoveredItem.UniqueNameCandidates.Select(x => $"{x} (disenchants for {_disenchantCache.Value.FirstOrDefault(y => y.UniqueName?.Text == x)?.Value * 2000})"))}");
                 }
 
-                AddSection();
-                if (priceInDivines >= 0.1)
+                if (hasBasePrice)
                 {
-                    var maxDivinePriceText = (HoveredItem.PriceData.MaxChaosValue / DivinePrice).FormatNumber(2);
-                    AddText(priceInDivinesText != maxDivinePriceText 
-                        ? $"\nDivine: {priceInDivinesText}d - {maxDivinePriceText}d" 
-                        : $"\nDivine: {priceInDivinesText}d");
-                }
+                    AddSection();
+                    if (priceInDivines >= 0.1)
+                    {
+                        var maxDivinePriceText = (HoveredItem.PriceData.MaxChaosValue / DivinePrice).FormatNumber(2);
+                        AddText(priceInDivinesText != maxDivinePriceText
+                            ? $"\nDivine: {priceInDivinesText}d - {maxDivinePriceText}d"
+                            : $"\nDivine: {priceInDivinesText}d");
+                    }
 
-                var maxPriceText = HoveredItem.PriceData.MaxChaosValue.FormatNumber(2, Settings.VisualPriceSettings.MaximalValueForFractionalDisplay);
-                AddText(minPriceText != maxPriceText 
-                    ? $"\nChaos: {minPriceText}c - {maxPriceText}c" 
-                    : $"\nChaos: {minPriceText}c");
+                    var maxPriceText = HoveredItem.PriceData.MaxChaosValue.FormatNumber(2, Settings.VisualPriceSettings.MaximalValueForFractionalDisplay);
+                    AddText(minPriceText != maxPriceText
+                        ? $"\nChaos: {minPriceText}c - {maxPriceText}c"
+                        : $"\nChaos: {minPriceText}c");
 
-                if (!string.IsNullOrEmpty(HoveredItem.UniqueName))
-                {
-                    AddText($"\nDisenchants for {_disenchantCache.Value.FirstOrDefault(x => x.UniqueName?.Text == HoveredItem.UniqueName)?.Value * 2000}");
+                    if (!string.IsNullOrEmpty(HoveredItem.UniqueName))
+                    {
+                        AddText($"\nDisenchants for {_disenchantCache.Value.FirstOrDefault(x => x.UniqueName?.Text == HoveredItem.UniqueName)?.Value * 2000}");
+                    }
                 }
 
                 break;
@@ -1081,7 +1098,8 @@ public partial class Main
                                  : RectangleF.Empty;
         foreach (var (item, processingType, clientRect) in _groundItems.Value)
         {
-            var box = clientRect ?? item.Element.GetClientRect();
+            if (clientRect == null && item.Element == null) continue;
+            var box = clientRect ?? item.Element!.GetClientRect();
             switch (processingType)
             {
                 case GroundItemProcessingType.WorldItem:
